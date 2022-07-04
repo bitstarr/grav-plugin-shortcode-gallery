@@ -11,7 +11,7 @@ class GalleryShortcode extends Shortcode
     public function init()
     {
         // gallery
-        $this->shortcode->getHandlers()->add( 'gallery', function ( ShortcodeInterface $shortcode )
+        $this->shortcode->getHandlers()->add( 'gallery', function ( ShortcodeInterface $sc )
         {
             // get default settings
             $pluginConfig = $this->config->get( 'plugins.' . $this->pluginName );
@@ -39,21 +39,36 @@ class GalleryShortcode extends Shortcode
                 $feed_config && $feed_config['enabled'] &&       // and the Feed plugin is enabled
                 isset($this->grav['page']->header()->content) && // and the current page has a collection
                 $feed_types && in_array($type, $feed_types) ) {  // and the Feed plugin handles it
-                return $shortcode->getContent(); // return unprocessed content (because in RSS, Javascripts don't work)
+                return $sc->getContent(); // return unprocessed content (because in RSS, Javascripts don't work)
             }
 
 
             // overwrite default gallery settings, if set by user
-            $rowHeight = $shortcode->getParameter('rowHeight', $pluginConfig['gallery']['rowHeight']);
-            $margins = $shortcode->getParameter('margins', $pluginConfig['gallery']['margins']);
-            $lastRow = $shortcode->getParameter('lastRow', $pluginConfig['gallery']['lastRow']);
-            $captions = $shortcode->getParameter('captions', $pluginConfig['gallery']['captions']);
-            $border = $shortcode->getParameter('border', $pluginConfig['gallery']['border']);
-            $resizeFactor = $shortcode->getParameter('resizeFactor', $pluginConfig['gallery']['resizeFactor']);
+            $type = $sc->getParameter( 'type', $pluginConfig['default'] );
+            $settings = [
+                'type' => $type,
+                'link' => $sc->getParameter( 'link', $pluginConfig[$type]['link'] ),
+                'thumb_width' => $sc->getParameter( 'thumb_width', $pluginConfig[$type]['thumb_width'] ),
+                'thumb_height' => $sc->getParameter( 'thumb_height', $pluginConfig[$type]['thumb_height'] ),
+                'target_width' => $sc->getParameter( 'target_width', $pluginConfig['target_width'] ),
+                'target_height' => $sc->getParameter( 'target_height', $pluginConfig['target_height'] ),
+            ];
+
+            switch ( $type ) {
+                case 'slider':
+                case 'list':
+                    break;
+                case 'columns':
+                case 'grid':
+                default:
+                    $settings['columns'] = $sc->getParameter( 'columns', $pluginConfig[$type]['columns'] );
+            }
+
+            $settings['link'] = filter_var( $settings['link'], FILTER_VALIDATE_BOOLEAN );
 
 
             // find all images, that a gallery contains
-            $content = $shortcode->getContent();
+            $content = $sc->getContent();
 
             // check validity
             if ( strpos($content, '<pre>' ) !== false )
@@ -114,15 +129,10 @@ class GalleryShortcode extends Shortcode
                 $this->shortcode->addAssets('js', 'plugin://shortcode-gallery/assets/gallery.js');
             }
 
-            return $this->twig->processTemplate('partials/gallery.html.twig', [
+            return $this->twig->processTemplate('partials/gallery-' . $type . '.html.twig', [
                 'page' => $this->grav['page'], // used for image resizing
                 // gallery settings
-                'rowHeight' => $rowHeight,
-                'margins' => $margins,
-                'lastRow' => $lastRow,
-                'captions' => $captions,
-                'border' => $border,
-                'resizeFactor' => $resizeFactor,
+                'settings' => $settings,
                 // images
                 'images' => $images_final,
             ]);

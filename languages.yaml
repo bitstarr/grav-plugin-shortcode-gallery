@@ -4,8 +4,18 @@ en:
     BUILT_IN_CSS: Use built in CSS
     BUILT_IN_JS: Use built in JavaScript
 
+    DEFAULT: Default Type
+    GRID: Grid
+    COLUMNS: Columns
+    LIST: List
+    SLIDER: Slider
+
     FORMAT_ERROR: Images provided got parsed as code block. Please check your markdown file and make sure the images aren't indented by tab or more than three spaces.
 
+    GRID_SETTINGS: "Grid Settings"
+    GRID_MAX_COL: "Maximum column count"
+    GRID_TARGET_WIDTH: "max. width of linked image"
+    GRID_TARGET_HEIGHT: "max. height of linked image"
 
 
 

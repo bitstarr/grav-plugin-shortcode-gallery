@@ -54,15 +54,26 @@ form:
       validate:
         type: bool
 
-    gallery:
+    default:
+      type: select
+      label: PLUGIN_SHORTCODE_GALLERY.DEFAULT
+      size: medium
+      default: grid
+      options:
+        grid: PLUGIN_SHORTCODE_GALLERY.GRID
+        columns: PLUGIN_SHORTCODE_GALLERY.COLUMNS
+        list: PLUGIN_SHORTCODE_GALLERY.LIST
+        slider: PLUGIN_SHORTCODE_GALLERY.SLIDER
+
+    grid:
       type: section
-      title: PLUGIN_SHORTCODE_GALLERY.GALLERY_SETTINGS
+      title: PLUGIN_SHORTCODE_GALLERY.GRID_SETTINGS
       underline: true
       fields:
-        gallery.rowHeight:
-          label: PLUGIN_SHORTCODE_GALLERY.DEFAULT_ROW_HEIGHT
-          help: PLUGIN_SHORTCODE_GALLERY.DEFAULT_ROW_HEIGHT_HELP
+        grid.columns:
+          label: PLUGIN_SHORTCODE_GALLERY.GRID_MAX_COL
           type: number
+          default: 4
           validate:
-            min: 0
+            min: 2
           size: small

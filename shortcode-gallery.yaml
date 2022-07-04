@@ -1,6 +1,33 @@
 enabled: true
 built_in_css: false
 built_in_js: false
+default: grid
+
+target_width: 1920
+target_height: 1080
+
+grid:
+  columns: 4
+  thumb_width: 250
+  thumb_height: 250
+  link: true
+
+columns:
+  columns: 2
+  thumb_width: 500
+  thumb_height: null
+  link: true
+
+list:
+  thumb_width: 300
+  thumb_height: 300
+  link: true
+
+slider:
+  thumb_width: 300
+  thumb_height: 300
+  link: false
+
 gallery:
   rowHeight: 200
   margins: 3
@@ -8,18 +35,4 @@ gallery:
   captions: "false"
   border: 0
   resizeFactor: 1.5
-lightbox:
-  openEffect: zoom
-  closeEffect: zoom
-  slideEffect: slide
-  closeButton: "true"
-  touchNavigation: "true"
-  touchFollowAxis: "true"
-  keyboardNavigation: "true"
-  closeOnOutsideClick: "true"
-  loop: "false"
-  draggable: "true"
-  descEnabled: "false"
-  descPosition: bottom
-  descMoreText: "See more"
-  descMoreLength: 60
+

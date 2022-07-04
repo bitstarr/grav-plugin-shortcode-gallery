@@ -1,0 +1,57 @@
+{# a random id for each gallery #}
+{% set id = random() %}
+<div class="sc-gallery" id="gallery-{{ id }}">
+    {%~ for image in images %}
+
+    {#~ try to generate a thumbnail image #}
+    {#- 1) get the full image url
+            https://mywebsite.com/user/pages/02.gallery/01.landscapes/image01.jpg
+        2) remove the sites url
+            /user/pages/02.gallery/01.landscapes/image01.jpg
+        3) remove "/user/"
+            pages/02.gallery/01.landscapes/image01.jpg
+            be careful, a page can be named "user", only replace the first occurence
+        4) add "user://"
+            user://pages/02.gallery/01.landscapes/image01.jpg
+        5) use the generated url to get the image via grav (can load any image in the /user directory)
+    #}
+    {%- set original_image = image["src"] %} {# 1 #}
+    {%- if base_url %}
+        {%- set original_image = original_image|replace({(base_url): ""}) %} {# 2 #}
+    {%- endif %}
+    {%- set original_image = original_image|split("/user/", 2) %} {# 3 #}
+    {%- set original_image = "user://" ~ original_image[1] %} {# 4 #}
+    {%- set original_image = page.media[original_image] %} {# 5 #}
+
+    {{dump(settings)}}
+    {{dump(original_image)}}
+    {# set a cropped image as link target, if linking enabled #}
+    {%- if original_image
+        and settings.target_width != 0
+        and settings.target_height != 0
+        and settings.link
+    %}
+        {%- set href = original_image.cropZoom( settings.target_width, settings.target_height ).url %}
+    {%- else %}
+        {%- set href = image['src'] %}
+    {%- endif %}
+
+    {%- if href and settings.link %}
+    <a href="{{ href }}" class="glightbox-{{ id }}">
+    {%- endif %}
+
+        {%- if original_image %}
+            {#- success: can now generate a smaller thumbnail image #}
+            {{ original_image
+                .cropResize( settings.thumb_width )
+                .loading.html( image.title, image.alt )|raw }}
+        {%- else %}
+            {#~ couldn't find the image inside grav, so just use the original url #}
+            {{ image["image"]|raw }}
+            {{- "\n" }}
+        {%- endif %}
+    {%- if href and settings.link %}
+    </a>
+    {%- endif %}
+    {%~ endfor %}
+</div>
