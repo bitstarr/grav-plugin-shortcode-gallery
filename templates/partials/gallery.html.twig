@@ -1,0 +1,44 @@
+{# a random id for each gallery #}
+{% set id = random() %}
+<div id="gallery-{{ id }}">
+    {%~ for image in images %}
+    <a href="{{ image["src"] }}" class="glightbox-{{ id }}"
+        {#- add description, if enabled #}
+        {%- if descEnabled == "true" %}
+            {{- "" }} data-description="{{ image["title"]|raw }}"
+        {%- endif %}
+>
+        {#~ try to generate a thumbnail image #}
+        {#- 1) get the full image url
+                https://mywebsite.com/user/pages/02.gallery/01.landscapes/image01.jpg
+            2) remove the sites url
+                /user/pages/02.gallery/01.landscapes/image01.jpg
+            3) remove "/user/"
+                pages/02.gallery/01.landscapes/image01.jpg
+                be careful, a page can be named "user", only replace the first occurence
+            4) add "user://"
+                user://pages/02.gallery/01.landscapes/image01.jpg
+            5) use the generated url to get the image via grav (can load any image in the /user directory)
+        #}
+        {%- set original_image = image["src"] %} {# 1 #}
+        {%- if base_url %}
+            {%- set original_image = original_image|replace({(base_url): ""}) %} {# 2 #}
+        {%- endif %}
+        {%- set original_image = original_image|split("/user/", 2) %} {# 3 #}
+        {%- set original_image = "user://" ~ original_image[1] %} {# 4 #}
+        {%- set original_image = page.media[original_image] %} {# 5 #}
+
+        {%- if original_image %}
+            {#- success: can now generate a smaller thumbnail image #}
+            {%- set resize_factor = (rowHeight * resizeFactor) / original_image.height %}
+            {{ original_image
+                .cropResize(original_image.width * resize_factor, original_image.height * resize_factor)
+                .loading.html(image.title, image.alt)|raw }}
+        {%- else %}
+            {#~ couldn't find the image inside grav, so just use the original url #}
+            {{ image["image"]|raw }}
+            {{- "\n" }}
+        {%- endif %}
+    </a>
+    {%~ endfor %}
+</div>

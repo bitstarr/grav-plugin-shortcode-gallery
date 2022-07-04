@@ -7,10 +7,10 @@ use RocketTheme\Toolbox\Event\Event;
 use Grav\Common\Page\Page;
 
 /**
- * Class ShortcodeGalleryPlusPlus
+ * Class ShortcodeGallery
  * @package Grav\Plugin
  */
-class ShortcodeGalleryPlusPlusPlugin extends Plugin
+class ShortcodeGalleryPlugin extends Plugin
 {
     private $currentPage = null;
 
@@ -27,10 +27,10 @@ class ShortcodeGalleryPlusPlusPlugin extends Plugin
     public static function getSubscribedEvents(): array
     {
         return [
-            'onPluginsInitialized' => ['onPluginsInitialized', 0],
-            'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
-            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
-            'onPageContentRaw' => ['onPageContentRaw', 1000],             // before the Shortcode Core plugin
+            'onPluginsInitialized'  => ['onPluginsInitialized', 0],
+            'onShortcodeHandlers'   => ['onShortcodeHandlers', 0],
+            'onTwigTemplatePaths'   => ['onTwigTemplatePaths', 0],
+            'onPageContentRaw'      => ['onPageContentRaw', 1000], // before the Shortcode Core plugin
             'onPageContentProcessed' => ['onPageContentProcessed', 1000], // before the Shortcode Core plugin
         ];
     }

@@ -1,4 +1,6 @@
 enabled: true
+built_in_css: false
+built_in_js: false
 gallery:
   rowHeight: 200
   margins: 3

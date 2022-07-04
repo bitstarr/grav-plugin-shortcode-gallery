@@ -1,10 +1,10 @@
-# Shortcode Gallery++ Plugin
+# Shortcode Gallery Plugin
 
 ## About
 
-The **Shortcode Gallery** Plugin is an extension for [Grav CMS](http://github.com/getgrav/grav). A shortcode extension to add simple and customizble galleries to your Grav website.
+The **Shortcode Gallery** Plugin is an extension for [Grav CMS](http://github.com/getgrav/grav). A shortcode extension to add simple and customizable galleries to your Grav website.
 
-It is a fork of [Shortcode Gallery++](https://github.com/sal0max/grav-plugin-shortcode-gallery-plusplus) to fit my personal likings.
+It is a fork of [Shortcode Gallery++](https://github.com/bitstarr/grav-plugin-shortcode-gallery) to fit my personal likings.
 
 ## Usage
 
@@ -75,43 +75,30 @@ Just have a look for yourself:
 
 ## Installation
 
-### Preferred way: GPM Installation
+This Plugin will not be published via GPM because it's meant to be a building block of your custom theme. It can run out of the box, but I prefer to use custom template, CSS and JS.
 
-To install the plugin via the [GPM](http://learn.getgrav.org/advanced/grav-gpm), navigate to the root of your
-Grav-installation, and enter:
+### Manual Installation
 
-    bin/gpm install shortcode-gallery-plusplus
+> NOTE: This plugin is a modular component for Grav which requires the [Grav Shortcode Core Plugin](https://github.com/getgrav/grav-plugin-shortcode-core) to be installed.
 
-### Alternatively: via Admin Plugin
-
-If you use the Admin Plugin, you can install the plugin directly by browsing the `Plugins`-menu and clicking on
-the `Add` button.
-
-### If you wish so: Manual Installation
-
-> NOTE: This plugin is a modular component for Grav which requires the [Grav Shortcode Core Plugin
-](https://github.com/getgrav/grav-plugin-shortcode-core) to be installed.
-
-To install the plugin manually, download the zip-version of this repository and unzip it
-under `/your/site/grav/user/plugins`. Then rename the folder to `shortcode-gallery-plusplus`. You can find these files
-on [GitHub](https://github.com/sal0max/grav-plugin-shortcode-gallery-plusplus) or
-via [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
+To install the plugin manually, download the zip-version of this repository and unzip it under `/your/site/grav/user/plugins`. Then rename the folder to `shortcode-gallery`. You can find these files on [GitHub](https://github.com/bitstarr/grav-plugin-shortcode-gallery).
 
 ## Configuration
 
 Before configuring this plugin, you should copy
-the `user/plugins/shortcode-gallery-plusplus/shortcode-gallery-plusplus.yaml`
-to `user/config/plugins/shortcode-gallery-plusplus.yaml` and only edit that copy.
+the `user/plugins/shortcode-gallery/shortcode-gallery.yaml`
+to `user/config/plugins/shortcode-gallery.yaml` and only edit that copy.
 
 **Preferably**, use the Admin Plugin. It takes care of creating a file with your configuration
-named `shortcode-gallery-plusplus.yaml` to be created in the `user/config/plugins/`-folder once the configuration is
+named `shortcode-gallery.yaml` to be created in the `user/config/plugins/`-folder once the configuration is
 saved in the Admin.
 
 ---
 
 ## Credits
 
-Couldn't be possible without those awesome libraries:
+* This plugin is based on [Shortcode Gallery++](https://github.com/bitstarr/grav-plugin-shortcode-gallery)
 
-* [Justified-Gallery](https://github.com/miromannino/Justified-Gallery) by Miro Mannino
-* [GLightbox](https://github.com/biati-digital/glightbox) by biati digital
+## Todo
+
+* Site wide setting how to render inside feeds
