@@ -16,33 +16,6 @@ class GalleryShortcode extends Shortcode
             // get default settings
             $pluginConfig = $this->config->get( 'plugins.' . $this->pluginName );
 
-            // get the current page in process (i.e. the page where the shortcode is being processed)
-            // warning, it can be different from $this->grav['page'], if ever we browse a collection
-            // this is exactly what the Feed plugin does
-            $currentPage = $this->grav['plugins']->getPlugin( $this->pluginName )->getCurrentPage();
-
-            // values to check if we are in a feed (RSS, Atom, JSON)
-            $type = $this->grav['uri']->extension(); // Get current page extension
-            $feed_config = $this->grav['config']->get('plugins.feed');
-            $feed_types = array('rss','atom');
-            if ($feed_config && $feed_config['enable_json_feed'])
-                $feed_types[] = 'json';
-
-            // check if the rendered page will be cached or not
-            $renderingCacheDisabled = isset($currentPage->header()->cache_enable)
-                                    && !$currentPage->header()->cache_enable
-                                    || !$this->grav['config']->get('system.cache.enabled');
-
-            // check if we are in a feed (RSS, Atom, JSON)
-            // we also check that the page will not be cached once rendered (otherwise the gallery will not be generated on the normal page)
-            if ( $renderingCacheDisabled &&                       // if the current page does not cache its rendering
-                $feed_config && $feed_config['enabled'] &&       // and the Feed plugin is enabled
-                isset($this->grav['page']->header()->content) && // and the current page has a collection
-                $feed_types && in_array($type, $feed_types) ) {  // and the Feed plugin handles it
-                return $sc->getContent(); // return unprocessed content (because in RSS, Javascripts don't work)
-            }
-
-
             // overwrite default gallery settings, if set by user
             $type = $sc->getParameter( 'type', $pluginConfig['default'] );
             $type = ( isset( $pluginConfig[$type] ) ) ? $type : $pluginConfig['default'];
@@ -56,17 +29,6 @@ class GalleryShortcode extends Shortcode
                 'target_height' => $sc->getParameter( 'target_height', $pluginConfig['target_height'] ),
                 'class' => $sc->getParameter( 'class' ),
             ];
-            /*
-            switch ( $type ) {
-                case 'slider':
-                case 'list':
-                    break;
-                case 'columns':
-                case 'grid':
-                default:
-                    $settings['columns'] = $sc->getParameter( 'columns', $pluginConfig[$type]['columns'] );
-            }
-            */
 
             $settings['link'] = filter_var( $settings['link'], FILTER_VALIDATE_BOOLEAN );
             $settings['captions'] = filter_var( $settings['captions'], FILTER_VALIDATE_BOOLEAN );
@@ -143,5 +105,4 @@ class GalleryShortcode extends Shortcode
             ]);
         });
     }
-
 }

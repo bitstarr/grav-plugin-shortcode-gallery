@@ -6,13 +6,15 @@ The **Shortcode Gallery** Plugin is an extension for [Grav CMS](http://github.co
 
 It's a fork of [Shortcode Gallery++](https://github.com/bitstarr/grav-plugin-shortcode-gallery) to fit my personal likings.
 
+Unlike the original there no special handling for feeds here, because disabling caching on pages and posts seems not be best option for me, so the feed will have to take the gallery markup as is.
+
 ## Usage
 
 It's quite simple. Just wrap some image links in `[gallery]` tags:
 
 ```markdown
 [gallery]
-![Alt text 1](image.jpg "Some description to be used in the lightbox")
+![Alt text 1](image.jpg "Some description that can be shown as caption")
 ![Alt text 2](/images/image.jpg "You can be very precise with your image title if you like to.")
 ![relative link](../image.jpg)
 ![remote link](https://remotesite.com/image.jpg)
@@ -22,30 +24,31 @@ It's quite simple. Just wrap some image links in `[gallery]` tags:
 
 ## Okay, what does it look like?
 
-This plugin combines a nice justified gallery layout with an eye-pleasing lightbox.
-All images get nicely aligned. After a click on one of them, a sweet popup appears, showing it full-screen.
-Just have a look for yourself:
-
-![Demo](assets/demo.webp)
+With the included CSS and JS you can get a basic experience in different layouts.
 
 * You can of course create several galleries on the same page.
 * You have plenty of settings you can change in the admin panel.
 * You can also change everything for a single galleries via shortcode. For example:
+
 ```markdown
 [gallery rowHeight=230 margins=25 lastRow="justify" captions="false" border=0]
-![Alt text 1](image.jpg "Some description to be used in the lightbox")
-![Alt text 2](/images/image.jpg "<strong>Descriptions</strong> can also<br>be <i>HTML</i> formatted.")
+![Alt text 1](image.jpg "Some description that can be shown as caption")
+![Alt text 2](/images/image.jpg "You can be very precise with your image title if you like to.")
 ![relative link](../image.jpg)
 ![remote link](https://remotesite.com/image.jpg)
 ...
 [/gallery]
 ```
 
+![Grid Layout](assets/grid.jpg)
+![Columns Layout](assets/columns.jpg)
+![List Layout](assets/list.jpg)
+
 ## Gallery Shortcode settings
 
 | parameter   | possible values | description |
 |-------------|-----------------| ------------|
-| `type` | `grid|columns|list|slider` | see images above
+| `type` | `grid`, `columns`, `list` | see images above
 | `target_width` | dimension in pixel | width of the linked images
 | `target_height` | dimension in pixel | height of the linked images
 | `thumb_width` | dimension in pixel | width of the thumbnails
@@ -85,7 +88,7 @@ Here a look a the default settings:
 enabled: true
 built_in_css: false # use the included CSS
 built_in_js: false # use included JS
-default: grid # sets the default layout type(grid|columns|list|slider)
+default: grid # sets the default layout type(grid|columns|list)
 
 target_width: 1920 # width of the linked larger image
 target_height: 1080 # height ot the linked larger image
@@ -108,12 +111,6 @@ list:
   thumb_height: 200 #thumbnail height
   captions: true # show a caption (title) at the thumbnail
   link: true # link to larger version (target)
-
-slider:
-  thumb_width: 960 # thumbnail width
-  thumb_height: 540 #thumbnail height
-  captions: false # show a caption (title) at the thumbnail
-  link: false # link to larger version (target)
 ```
 ---
 
@@ -124,6 +121,4 @@ slider:
 ## Todo
 
 * add JS Stuff
-* add screenshots to readme
 * write about customization
-* Site wide setting how to render inside feeds

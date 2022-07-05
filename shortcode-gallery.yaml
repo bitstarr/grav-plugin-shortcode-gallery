@@ -1,5 +1,5 @@
 enabled: true
-built_in_css: true
+built_in_css: false
 built_in_js: false
 default: grid
 
@@ -23,9 +23,3 @@ list:
   thumb_height: 200
   captions: true
   link: true
-
-slider:
-  thumb_width: 960
-  thumb_height: 540
-  captions: false
-  link: false

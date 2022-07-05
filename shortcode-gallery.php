@@ -12,6 +12,7 @@ use Grav\Common\Page\Page;
  */
 class ShortcodeGalleryPlugin extends Plugin
 {
+    const SLUG = 'shortcode-gallery';
     private $currentPage = null;
 
     /**
@@ -30,8 +31,6 @@ class ShortcodeGalleryPlugin extends Plugin
             'onPluginsInitialized'  => ['onPluginsInitialized', 0],
             'onShortcodeHandlers'   => ['onShortcodeHandlers', 0],
             'onTwigTemplatePaths'   => ['onTwigTemplatePaths', 0],
-            'onPageContentRaw'      => ['onPageContentRaw', 1000], // before the Shortcode Core plugin
-            'onPageContentProcessed' => ['onPageContentProcessed', 1000], // before the Shortcode Core plugin
         ];
     }
 
@@ -40,18 +39,9 @@ class ShortcodeGalleryPlugin extends Plugin
         if ($this->isAdmin()) {
             $this->active = false;
             $this->enable([
-                'onGetPageBlueprints' => ['onGetPageBlueprints', 0]
+                'onAssetsInitialized' => ['onAssetsInitialized', 0],
             ]);
         }
-    }
-
-    /**
-     * Extend page blueprints with additional configuration options.
-     */
-    public function onGetPageBlueprints($event)
-    {
-        $types = $event->types;
-        $types->scanBlueprints('plugins://' . $this->name . '/blueprints');
     }
 
     /**
@@ -63,27 +53,29 @@ class ShortcodeGalleryPlugin extends Plugin
     }
 
     /**
-     * Detect which page is being processed, even if it is in a collection.
-     * We store it so that our shortcode can use it.
-     */
-    public function onPageContentRaw(Event $event)
-    {
-        $this->currentPage = $event['page'];
-    }
-    public function onPageContentProcessed(Event $event)
-    {
-        $this->currentPage = $event['page'];
-    }
-    public function getCurrentPage()
-    {
-        return $this->currentPage;
-    }
-
-    /**
      * Initialize configuration
      */
     public function onShortcodeHandlers()
     {
         $this->grav['shortcode']->registerAllShortcodes(__DIR__ . '/shortcodes');
+    }
+
+    /**
+     * [onAssetsInitialized]
+     *
+     * @return void
+     */
+    public function onAssetsInitialized()
+    {
+        $page = $this->grav['admin']->page();
+        if( $page->isPage() )
+        // $this->grav['debugger']->addMessage( $page->published() );
+        {
+            // $trigger = $this->config->get('plugins.' . self::SLUG . '.route');
+            $assets = $this->grav['assets'];
+            // $assets->addInlineJs( 'const draft_preview_route = "' . $trigger . '";' );
+            $assets->addCss( 'plugin://' . self::SLUG . '/assets/gallery.css' );
+            $assets->addCss( 'plugin://' . self::SLUG . '/assets/editor.css' );
+        }
     }
 }

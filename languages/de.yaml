@@ -1,0 +1,24 @@
+PLUGIN_SHORTCODE_GALLERY:
+
+  BUILT_IN_CSS: Mitgeliefertes CSS nutzen
+  BUILT_IN_JS: Mitgeliefertes JavaScript nutzen
+
+  DEFAULT: Standard-Typ
+  GRID: Grid
+  COLUMNS: Spalten
+  LIST: Liste
+
+  FORMAT_ERROR: Die bereitgestellten Bilder wurden als Codeblock geparst. Bitte überprüfen Sie Ihre Markdown-Datei und stellen Sie sicher, dass die Bilder nicht mit Tabulator oder mehr als drei Leerzeichen eingerückt sind.
+
+  TARGET_WIDTH: max. Breite für verlinkte Bilder
+  TARGET_HEIGHT: max. Höhe für verlinkte Bilder
+
+  LINK_IMAGE: Vorschaubilder mit gorßer Version verlinken
+  ENABLE_CAPTIONS: Bildbeschreibung anzeigen
+  THUMB_WIDTH: Vorschaubilder-Breite
+  THUMB_HEIGHT: Vorschaubilder-Höhe
+  THUMB_WIDTH_MAX: Maximale Vorschaubilder-Breite
+
+  GRID_SETTINGS: Grid-Typ Einstellungen
+  COLUMNS_SETTINGS: Spalten-Typ Einstellungen
+  LIST_SETTINGS: Listen-Typ Einstellungen

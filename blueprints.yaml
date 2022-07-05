@@ -38,8 +38,8 @@ form:
       highlight: 1
       default: 0
       options:
-        1: Enabled
-        0: Disabled
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
 
@@ -49,8 +49,8 @@ form:
       highlight: 1
       default: 0
       options:
-        1: Enabled
-        0: Disabled
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
 
@@ -63,7 +63,6 @@ form:
         grid: PLUGIN_SHORTCODE_GALLERY.GRID
         columns: PLUGIN_SHORTCODE_GALLERY.COLUMNS
         list: PLUGIN_SHORTCODE_GALLERY.LIST
-        slider: PLUGIN_SHORTCODE_GALLERY.SLIDER
 
     target_width:
       label: PLUGIN_SHORTCODE_GALLERY.TARGET_WIDTH
@@ -84,8 +83,8 @@ form:
           label: PLUGIN_SHORTCODE_GALLERY.LINK_IMAGE
           highlight: 1
           options:
-            1: Enabled
-            0: Disabled
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
           validate:
             type: bool
         grid.captions:
@@ -93,8 +92,8 @@ form:
           label: PLUGIN_SHORTCODE_GALLERY.ENABLE_CAPTIONS
           highlight: 1
           options:
-            1: Enabled
-            0: Disabled
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
           validate:
             type: bool
         grid.thumb_width:
@@ -120,8 +119,8 @@ form:
           label: PLUGIN_SHORTCODE_GALLERY.LINK_IMAGE
           highlight: 1
           options:
-            1: Enabled
-            0: Disabled
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
           validate:
             type: bool
         columns.captions:
@@ -129,8 +128,8 @@ form:
           label: PLUGIN_SHORTCODE_GALLERY.ENABLE_CAPTIONS
           highlight: 1
           options:
-            1: Enabled
-            0: Disabled
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
           validate:
             type: bool
         columns.thumb_width:
@@ -153,8 +152,8 @@ form:
           label: PLUGIN_SHORTCODE_GALLERY.LINK_IMAGE
           highlight: 1
           options:
-            1: Enabled
-            0: Disabled
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
           validate:
             type: bool
         list.captions:
@@ -162,8 +161,8 @@ form:
           label: PLUGIN_SHORTCODE_GALLERY.ENABLE_CAPTIONS
           highlight: 1
           options:
-            1: Enabled
-            0: Disabled
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
           validate:
             type: bool
         list.thumb_width:
@@ -173,42 +172,6 @@ form:
           validate:
             min: 60
         list.thumb_height:
-          label: PLUGIN_SHORTCODE_GALLERY.THUMB_HEIGHT
-          type: number
-          size: small
-          validate:
-            min: 60
-
-    slider:
-      type: section
-      title: PLUGIN_SHORTCODE_GALLERY.SLIDER_SETTINGS
-      underline: true
-      fields:
-        slider.link:
-          type: toggle
-          label: PLUGIN_SHORTCODE_GALLERY.LINK_IMAGE
-          highlight: 1
-          options:
-            1: Enabled
-            0: Disabled
-          validate:
-            type: bool
-        slider.captions:
-          type: toggle
-          label: PLUGIN_SHORTCODE_GALLERY.ENABLE_CAPTIONS
-          highlight: 1
-          options:
-            1: Enabled
-            0: Disabled
-          validate:
-            type: bool
-        slider.thumb_width:
-          label: PLUGIN_SHORTCODE_GALLERY.THUMB_WIDTH
-          type: number
-          size: small
-          validate:
-            min: 60
-        slider.thumb_height:
           label: PLUGIN_SHORTCODE_GALLERY.THUMB_HEIGHT
           type: number
           size: small

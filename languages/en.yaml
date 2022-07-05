@@ -1,0 +1,24 @@
+PLUGIN_SHORTCODE_GALLERY:
+
+  BUILT_IN_CSS: Use built in CSS
+  BUILT_IN_JS: Use built in JavaScript
+
+  DEFAULT: Default Type
+  GRID: Grid
+  COLUMNS: Columns
+  LIST: List
+
+  FORMAT_ERROR: Images provided got parsed as code block. Please check your markdown file and make sure the images aren't indented by tab or more than three spaces.
+
+  TARGET_WIDTH: "max. width of linked image"
+  TARGET_HEIGHT: "max. height of linked image"
+
+  LINK_IMAGE: Link thumbnail with a larger version
+  ENABLE_CAPTIONS: Enable captions
+  THUMB_WIDTH: Thumbnail width
+  THUMB_HEIGHT: Thumbnail height
+  THUMB_WIDTH_MAX: Maximum thumbnail width
+
+  GRID_SETTINGS: "Grid Type Settings"
+  COLUMNS_SETTINGS: "Columns Type Settings"
+  LIST_SETTINGS: "List Type Settings"
