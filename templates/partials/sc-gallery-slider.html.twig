@@ -1,6 +1,14 @@
 {# a random id for each gallery #}
 {% set id = random() %}
-<div class="sc-gallery" id="gallery-{{ id }}">
+{#- set classnames #}
+{%- set css_classes = [
+    'sc-gallery',
+    'sc-gallery--list',
+] %}
+{%- if settings.class %}
+    {%- set css_classes = css_classes|merge( [ settings.class ] ) %}
+{%- endif %}
+<div class="{{ css_classes|join( ' ' )|trim }}" id="gallery-{{ id }}" itemscope itemtype="http://schema.org/ImageGallery">
     {%~ for image in images %}
 
     {#~ try to generate a thumbnail image #}
@@ -23,8 +31,6 @@
     {%- set original_image = "user://" ~ original_image[1] %} {# 4 #}
     {%- set original_image = page.media[original_image] %} {# 5 #}
 
-    {{dump(settings)}}
-    {{dump(original_image)}}
     {# set a cropped image as link target, if linking enabled #}
     {%- if original_image
         and settings.target_width != 0
@@ -43,7 +49,7 @@
         {%- if original_image %}
             {#- success: can now generate a smaller thumbnail image #}
             {{ original_image
-                .cropResize( settings.thumb_width )
+                .cropZoom( settings.thumb_width, settings.thumb_height )
                 .loading.html( image.title, image.alt )|raw }}
         {%- else %}
             {#~ couldn't find the image inside grav, so just use the original url #}

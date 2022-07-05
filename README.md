@@ -2,9 +2,9 @@
 
 ## About
 
-The **Shortcode Gallery** Plugin is an extension for [Grav CMS](http://github.com/getgrav/grav). A shortcode extension to add simple and customizable galleries to your Grav website.
+The **Shortcode Gallery** Plugin is an extension for [Grav CMS](http://github.com/getgrav/grav). A shortcode extension to add simple and customizable galleries to your grav website. It's targeting theme developers who seamlessly integrate CSS and JS assets for performance reasons.
 
-It is a fork of [Shortcode Gallery++](https://github.com/bitstarr/grav-plugin-shortcode-gallery) to fit my personal likings.
+It's a fork of [Shortcode Gallery++](https://github.com/bitstarr/grav-plugin-shortcode-gallery) to fit my personal likings.
 
 ## Usage
 
@@ -13,7 +13,7 @@ It's quite simple. Just wrap some image links in `[gallery]` tags:
 ```markdown
 [gallery]
 ![Alt text 1](image.jpg "Some description to be used in the lightbox")
-![Alt text 2](/images/image.jpg "<strong>Descriptions</strong> can also<br>be <i>HTML</i> formatted.")
+![Alt text 2](/images/image.jpg "You can be very precise with your image title if you like to.")
 ![relative link](../image.jpg)
 ![remote link](https://remotesite.com/image.jpg)
 ...
@@ -41,41 +41,31 @@ Just have a look for yourself:
 [/gallery]
 ```
 
-## Gallery settings
+## Gallery Shortcode settings
 
 | parameter   | possible values | description |
 |-------------|-----------------| ------------|
-| `rowHeight` | dimension in pixel | The preferred rows height.
-| `margins`   | dimension in pixel | The margins between the images.
-| `lastRow`   | `justify`, `hide`, `nojustify`, `center`, `right` | `justify`: justifies the last row; `hide`: hides the row if it can't be justified; `nojustify`: align the last row to the left; `center`: align the last row to the center; `right`: align the last row to the right
-| `captions`  | `true`, `false` | Enable captions that appear when the mouse hovers an image. **For caption, the alt-text of an image is used: `![caption](image.jpg)`**
-| `border`    | dimension in pixel | The border size of the gallery. With a negative value the border will be the same as `margins`.
+| `type` | `grid|columns|list|slider` | see images above
+| `target_width` | dimension in pixel | width of the linked images
+| `target_height` | dimension in pixel | height of the linked images
+| `thumb_width` | dimension in pixel | width of the thumbnails
+| `thumb_height` | dimension in pixel | height of the thumbnails
+| `link` | `true`, `false` | link thumbnails to larger/original image
+| `captions`  | `true`, `false` | show a caption (title) at the thumbnails
+| `classes` | custom CSS class names | add your custom class names for special occurances
 
-## Lightbox settings
+## Customization, CSS and JavaScript
 
-| parameter             | possible values | description |
-|-----------------------|-----------------| ------------|
-| `openEffect`          | `zoom`, `fade`, `none` |
-| `closeEffect`         | `zoom`, `fade`, `none` |
-| `slideEffect`         | `slide`, `zoom`, `fade`, `none` |
-| `closeButton`         | `true`, `false` | Show or hide the close button.
-| `touchNavigation`     | `true`, `false` | Enable touch navigation (swipe).
-| `touchFollowAxis`     | `true`, `false` | Image follow axis when dragging on mobile.
-| `keyboardNavigation`  | `true`, `false` | Enable or disable the keyboard navigation.
-| `closeOnOutsideClick` | `true`, `false` | Close the lightbox when clicking outside the active slide.
-| `loop`                | `true`, `false` | Loop slides on end.
-| `draggable`           | `true`, `false` | Enable or disable mouse drag to go to previous and next slide.
-| `descEnabled`         | `true`, `false` | **For description, the title-text of an image is used: `![](image.jpg "description")`**
-| `descPosition`        | `bottom`, `top`, `left`, `right` | The position for slides description.
-| `descMoreText`        | text            | Description: "See more" text.
-| `descMoreLength`      | number          | Description: Characters until "See more". Will display the entire description, if set to `0`.
+* for out of the box use, enable built in css/js
+* use you own styles and js libs
+* use your own templates
 
 
 ---
 
 ## Installation
 
-This Plugin will not be published via GPM because it's meant to be a building block of your custom theme. It can run out of the box, but I prefer to use custom template, CSS and JS.
+This Plugin will not be published via GPM because it's meant to be a building block of your custom theme. It can run out of the box, but I prefer to use custom templates, CSS and JS.
 
 ### Manual Installation
 
@@ -83,16 +73,48 @@ This Plugin will not be published via GPM because it's meant to be a building bl
 
 To install the plugin manually, download the zip-version of this repository and unzip it under `/your/site/grav/user/plugins`. Then rename the folder to `shortcode-gallery`. You can find these files on [GitHub](https://github.com/bitstarr/grav-plugin-shortcode-gallery).
 
+You can integrate this in you automated installation/deployments via the `user/.dependencies` file in your grav skeleton.
+
 ## Configuration
 
-Before configuring this plugin, you should copy
-the `user/plugins/shortcode-gallery/shortcode-gallery.yaml`
-to `user/config/plugins/shortcode-gallery.yaml` and only edit that copy.
+Before configuring this plugin, you should copy the `user/plugins/shortcode-gallery/shortcode-gallery.yaml` to `user/config/plugins/shortcode-gallery.yaml` and only edit that copy. The Settings can also be modified in the admin plugin.
 
-**Preferably**, use the Admin Plugin. It takes care of creating a file with your configuration
-named `shortcode-gallery.yaml` to be created in the `user/config/plugins/`-folder once the configuration is
-saved in the Admin.
+Here a look a the default settings:
 
+```yaml
+enabled: true
+built_in_css: false # use the included CSS
+built_in_js: false # use included JS
+default: grid # sets the default layout type(grid|columns|list|slider)
+
+target_width: 1920 # width of the linked larger image
+target_height: 1080 # height ot the linked larger image
+# set one of them to 0 to link to the original source
+
+grid:
+  thumb_width: 250 # thumbnail width
+  thumb_height: 250 #thumbnail height
+  captions: false # show a caption (title) at the thumbnail
+  link: true # link to larger version (target)
+
+columns:
+  thumb_width: 500 # maximum thumbnail width
+  thumb_height: null # needs to be set, ignore please
+  captions: false # show a caption (title) at the thumbnail
+  link: true # link to larger version (target)
+
+list:
+  thumb_width: 200 # thumbnail width
+  thumb_height: 200 #thumbnail height
+  captions: true # show a caption (title) at the thumbnail
+  link: true # link to larger version (target)
+
+slider:
+  thumb_width: 960 # thumbnail width
+  thumb_height: 540 #thumbnail height
+  captions: false # show a caption (title) at the thumbnail
+  link: false # link to larger version (target)
+```
 ---
 
 ## Credits
@@ -101,4 +123,7 @@ saved in the Admin.
 
 ## Todo
 
+* add JS Stuff
+* add screenshots to readme
+* write about customization
 * Site wide setting how to render inside feeds

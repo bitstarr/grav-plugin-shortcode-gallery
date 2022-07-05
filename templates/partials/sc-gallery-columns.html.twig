@@ -1,6 +1,14 @@
 {# a random id for each gallery #}
 {% set id = random() %}
-<div class="sc-gallery" id="gallery-{{ id }}">
+{#- set classnames #}
+{%- set css_classes = [
+    'sc-gallery',
+    'sc-gallery--list',
+] %}
+{%- if settings.class %}
+    {%- set css_classes = css_classes|merge( [ settings.class ] ) %}
+{%- endif %}
+<div class="{{ css_classes|join( ' ' )|trim }}" id="gallery-{{ id }}" itemscope itemtype="http://schema.org/ImageGallery">
 {%~ for image in images %}
     {#~ try to generate a thumbnail image #}
     {#- 1) get the full image url
@@ -33,22 +41,28 @@
         {%- set href = image['src'] %}
     {%- endif %}
 
-    {%- if href and settings.link %}
-    <a href="{{ href }}" class="glightbox-{{ id }}">
-    {%- endif %}
-
+    <figure class="sc-gallery__figure" role="group" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        {%- if href and settings.link %}
+        <a href="{{ href }}" class="sc-gallery__link">
+        {%- endif %}
         {%- if original_image %}
             {#- success: can now generate a smaller thumbnail image #}
             {{ original_image
-                .cropZoom( settings.thumb_width, settings.thumb_height )
-                .loading('lazy').html( image.title, image.alt )|raw }}
+                .cropResize( settings.thumb_width, null )
+                .loading('lazy').html( null, image.alt, 'sc-gallery__image' )|raw }}
         {%- else %}
             {#~ couldn't find the image inside grav, so just use the original url #}
             {{ image["image"]|raw }}
             {{- "\n" }}
         {%- endif %}
-    {%- if href and settings.link %}
-    </a>
-    {%- endif %}
+        {%- if href and settings.link %}
+        </a>
+        {%- endif %}
+        {%- if settings.captions %}
+        <figcaption class="sc-gallery__caption">
+            {{ image.title }}
+        </figcaption>
+        {%- endif %}
+    </figure>
 {%~ endfor %}
 </div>

@@ -45,15 +45,18 @@ class GalleryShortcode extends Shortcode
 
             // overwrite default gallery settings, if set by user
             $type = $sc->getParameter( 'type', $pluginConfig['default'] );
+            $type = ( isset( $pluginConfig[$type] ) ) ? $type : $pluginConfig['default'];
             $settings = [
                 'type' => $type,
                 'link' => $sc->getParameter( 'link', $pluginConfig[$type]['link'] ),
+                'captions' => $sc->getParameter( 'captions', $pluginConfig[$type]['captions'] ),
                 'thumb_width' => $sc->getParameter( 'thumb_width', $pluginConfig[$type]['thumb_width'] ),
                 'thumb_height' => $sc->getParameter( 'thumb_height', $pluginConfig[$type]['thumb_height'] ),
                 'target_width' => $sc->getParameter( 'target_width', $pluginConfig['target_width'] ),
                 'target_height' => $sc->getParameter( 'target_height', $pluginConfig['target_height'] ),
+                'class' => $sc->getParameter( 'class' ),
             ];
-
+            /*
             switch ( $type ) {
                 case 'slider':
                 case 'list':
@@ -63,8 +66,10 @@ class GalleryShortcode extends Shortcode
                 default:
                     $settings['columns'] = $sc->getParameter( 'columns', $pluginConfig[$type]['columns'] );
             }
+            */
 
             $settings['link'] = filter_var( $settings['link'], FILTER_VALIDATE_BOOLEAN );
+            $settings['captions'] = filter_var( $settings['captions'], FILTER_VALIDATE_BOOLEAN );
 
 
             // find all images, that a gallery contains
@@ -129,7 +134,7 @@ class GalleryShortcode extends Shortcode
                 $this->shortcode->addAssets('js', 'plugin://shortcode-gallery/assets/gallery.js');
             }
 
-            return $this->twig->processTemplate('partials/gallery-' . $type . '.html.twig', [
+            return $this->twig->processTemplate('partials/sc-gallery-' . $type . '.html.twig', [
                 'page' => $this->grav['page'], // used for image resizing
                 // gallery settings
                 'settings' => $settings,

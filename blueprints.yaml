@@ -65,15 +65,152 @@ form:
         list: PLUGIN_SHORTCODE_GALLERY.LIST
         slider: PLUGIN_SHORTCODE_GALLERY.SLIDER
 
+    target_width:
+      label: PLUGIN_SHORTCODE_GALLERY.TARGET_WIDTH
+      type: number
+      size: small
+    target_height:
+      label: PLUGIN_SHORTCODE_GALLERY.TARGET_HEIGHT
+      type: number
+      size: small
+
     grid:
       type: section
       title: PLUGIN_SHORTCODE_GALLERY.GRID_SETTINGS
       underline: true
       fields:
-        grid.columns:
-          label: PLUGIN_SHORTCODE_GALLERY.GRID_MAX_COL
-          type: number
-          default: 4
+        grid.link:
+          type: toggle
+          label: PLUGIN_SHORTCODE_GALLERY.LINK_IMAGE
+          highlight: 1
+          options:
+            1: Enabled
+            0: Disabled
           validate:
-            min: 2
+            type: bool
+        grid.captions:
+          type: toggle
+          label: PLUGIN_SHORTCODE_GALLERY.ENABLE_CAPTIONS
+          highlight: 1
+          options:
+            1: Enabled
+            0: Disabled
+          validate:
+            type: bool
+        grid.thumb_width:
+          label: PLUGIN_SHORTCODE_GALLERY.THUMB_WIDTH
+          type: number
           size: small
+          validate:
+            min: 60
+        grid.thumb_height:
+          label: PLUGIN_SHORTCODE_GALLERY.THUMB_HEIGHT
+          type: number
+          size: small
+          validate:
+            min: 60
+
+    columns:
+      type: section
+      title: PLUGIN_SHORTCODE_GALLERY.COLUMNS_SETTINGS
+      underline: true
+      fields:
+        columns.link:
+          type: toggle
+          label: PLUGIN_SHORTCODE_GALLERY.LINK_IMAGE
+          highlight: 1
+          options:
+            1: Enabled
+            0: Disabled
+          validate:
+            type: bool
+        columns.captions:
+          type: toggle
+          label: PLUGIN_SHORTCODE_GALLERY.ENABLE_CAPTIONS
+          highlight: 1
+          options:
+            1: Enabled
+            0: Disabled
+          validate:
+            type: bool
+        columns.thumb_width:
+          label: PLUGIN_SHORTCODE_GALLERY.THUMB_WIDTH_MAX
+          type: number
+          size: small
+          validate:
+            min: 60
+        columns.thumb_height:
+          type: hidden
+          default: null
+
+    list:
+      type: section
+      title: PLUGIN_SHORTCODE_GALLERY.LIST_SETTINGS
+      underline: true
+      fields:
+        list.link:
+          type: toggle
+          label: PLUGIN_SHORTCODE_GALLERY.LINK_IMAGE
+          highlight: 1
+          options:
+            1: Enabled
+            0: Disabled
+          validate:
+            type: bool
+        list.captions:
+          type: toggle
+          label: PLUGIN_SHORTCODE_GALLERY.ENABLE_CAPTIONS
+          highlight: 1
+          options:
+            1: Enabled
+            0: Disabled
+          validate:
+            type: bool
+        list.thumb_width:
+          label: PLUGIN_SHORTCODE_GALLERY.THUMB_WIDTH
+          type: number
+          size: small
+          validate:
+            min: 60
+        list.thumb_height:
+          label: PLUGIN_SHORTCODE_GALLERY.THUMB_HEIGHT
+          type: number
+          size: small
+          validate:
+            min: 60
+
+    slider:
+      type: section
+      title: PLUGIN_SHORTCODE_GALLERY.SLIDER_SETTINGS
+      underline: true
+      fields:
+        slider.link:
+          type: toggle
+          label: PLUGIN_SHORTCODE_GALLERY.LINK_IMAGE
+          highlight: 1
+          options:
+            1: Enabled
+            0: Disabled
+          validate:
+            type: bool
+        slider.captions:
+          type: toggle
+          label: PLUGIN_SHORTCODE_GALLERY.ENABLE_CAPTIONS
+          highlight: 1
+          options:
+            1: Enabled
+            0: Disabled
+          validate:
+            type: bool
+        slider.thumb_width:
+          label: PLUGIN_SHORTCODE_GALLERY.THUMB_WIDTH
+          type: number
+          size: small
+          validate:
+            min: 60
+        slider.thumb_height:
+          label: PLUGIN_SHORTCODE_GALLERY.THUMB_HEIGHT
+          type: number
+          size: small
+          validate:
+            min: 60
