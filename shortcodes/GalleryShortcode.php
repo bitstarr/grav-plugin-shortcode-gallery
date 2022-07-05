@@ -89,11 +89,25 @@ class GalleryShortcode extends Shortcode
             // add JS and CSS if enabled
             if ( $pluginConfig['built_in_css'] )
             {
-                $this->shortcode->addAssets('css', 'plugin://shortcode-gallery/assets/gallery.css');
+                $this->shortcode->addAssets('css', 'plugin://' . $this->pluginName . '/assets/gallery.css');
             }
             if ( $pluginConfig['built_in_js'] )
             {
-                $this->shortcode->addAssets('js', 'plugin://shortcode-gallery/assets/gallery.js');
+                $this->shortcode->addAssets('js', [
+                    'plugin://' . $this->pluginName . '/vendor/chocolat/chocolat.min.js',
+                        [
+                            'loading' => 'defer'
+                        ]
+                    ]
+                );
+                $this->shortcode->addAssets('js', [
+                    'plugin://' . $this->pluginName . '/assets/gallery.js',
+                        [
+                            'loading' => 'defer'
+                        ]
+                    ]
+                );
+                $this->shortcode->addAssets('css', 'plugin://' . $this->pluginName . '/vendor/chocolat/chocolat.css', );
             }
 
             return $this->twig->processTemplate('partials/sc-gallery-' . $type . '.html.twig', [

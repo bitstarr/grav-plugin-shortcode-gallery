@@ -31,7 +31,7 @@ With the included CSS and JS you can get a basic experience in different layouts
 * You can also change everything for a single galleries via shortcode. For example:
 
 ```markdown
-[gallery rowHeight=230 margins=25 lastRow="justify" captions="false" border=0]
+[gallery type=columns captions=true target_width=2560 target_height=1440]
 ![Alt text 1](image.jpg "Some description that can be shown as caption")
 ![Alt text 2](/images/image.jpg "You can be very precise with your image title if you like to.")
 ![relative link](../image.jpg)
@@ -116,6 +116,7 @@ list:
 
 ## Credits
 
+* [Chocolat Lightbox](https://github.com/nicolas-t/Chocolat)
 * This plugin is based on [Shortcode Gallery++](https://github.com/bitstarr/grav-plugin-shortcode-gallery)
 
 ## Todo

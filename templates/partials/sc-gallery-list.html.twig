@@ -36,7 +36,14 @@
         and settings.target_height != 0
         and settings.link
     %}
-        {%- set href = original_image.cropZoom( settings.target_width, settings.target_height ).url %}
+        {%- set w = settings.target_width %}
+        {%- set h = settings.target_height %}
+        {#- consider image orientation #}
+        {%- if original_image.height > original_image.width %}
+            {%- set w = settings.target_height %}
+            {%- set h = settings.target_width %}
+        {%- endif %}
+        {%- set href = original_image.cropZoom( w, h ).url %}
     {%- else %}
         {%- set href = image['src'] %}
     {%- endif %}
