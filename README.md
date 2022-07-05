@@ -76,7 +76,7 @@ This Plugin will not be published via GPM because it's meant to be a building bl
 
 To install the plugin manually, download the zip-version of this repository and unzip it under `/your/site/grav/user/plugins`. Then rename the folder to `shortcode-gallery`. You can find these files on [GitHub](https://github.com/bitstarr/grav-plugin-shortcode-gallery).
 
-You can integrate this in you automated installation/deployments via the `user/.dependencies` file in your grav skeleton.
+You can integrate this in your automated installation/deployments via the `user/.dependencies` file in your grav skeleton.
 
 ## Configuration
 
@@ -121,5 +121,4 @@ list:
 
 ## Todo
 
-* add JS Stuff
 * write about customization
