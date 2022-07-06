@@ -24,7 +24,7 @@ It's quite simple. Just wrap some image links in `[gallery]` tags:
 
 ## Okay, what does it look like?
 
-With the included CSS and JS you can get a basic experience in different layouts.
+With the included CSS and JS you can get a basic experience with different layouts (which are of cause responsive). Be sure to activate the included CSS and JS in the plugin settings!
 
 * You can of course create several galleries on the same page.
 * You have plenty of settings you can change in the admin panel.
@@ -59,10 +59,13 @@ With the included CSS and JS you can get a basic experience in different layouts
 
 ## Customization, CSS and JavaScript
 
-* for out of the box use, enable built in css/js
-* use you own styles and js libs
-* use your own templates
+You can use the included CSS and JS if you enable them in the plugins settings. But here is how you use it in you theme.
 
+For using another markup for you galleries, copy the templates from `user/plugins/shortcode-gallery/templates/shortcodes` to `user/themes/yourthemename/templates/shortcodes` (your theme) and customize according to need.
+
+With custom (theme site) CSS and JS you can implement it in the bundling/processing you like. This will ensure you have full control over web performance, since you are not dependent on how the plugin includes multiple files impacting the number and quality of requests to the server.
+
+You can use the included CSS and JavaScript files as reference or starting point for your modifications. You don't need to use [Chocolat Lightbox](https://github.com/nicolas-t/Chocolat). You can use what ever lightbox you like and customize the templates as the library demands.
 
 ---
 
@@ -118,7 +121,3 @@ list:
 
 * [Chocolat Lightbox](https://github.com/nicolas-t/Chocolat)
 * This plugin is based on [Shortcode Gallery++](https://github.com/bitstarr/grav-plugin-shortcode-gallery)
-
-## Todo
-
-* write about customization
