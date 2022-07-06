@@ -110,7 +110,7 @@ class GalleryShortcode extends Shortcode
                 $this->shortcode->addAssets('css', 'plugin://' . $this->pluginName . '/vendor/chocolat/chocolat.css', );
             }
 
-            return $this->twig->processTemplate('partials/sc-gallery-' . $type . '.html.twig', [
+            return $this->twig->processTemplate('shortcodes/gallery-' . $type . '.html.twig', [
                 'page' => $this->grav['page'], // used for image resizing
                 // gallery settings
                 'settings' => $settings,
