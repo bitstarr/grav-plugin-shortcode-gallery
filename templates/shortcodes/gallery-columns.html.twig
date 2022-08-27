@@ -43,7 +43,7 @@
             {%- set w = settings.target_height %}
             {%- set h = settings.target_width %}
         {%- endif %}
-        {%- set href = original_image.cropZoom( w, h ).url %}
+        {%- set href = original_image.cropResize( w, h ).url %}
     {%- else %}
         {%- set href = image['src'] %}
     {%- endif %}

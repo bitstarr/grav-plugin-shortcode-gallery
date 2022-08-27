@@ -1,7 +1,7 @@
 name: Shortcode Gallery
 slug: shortcode-gallery
 type: plugin
-version: 1.0.0
+version: 1.0.1
 description: A Shortcode extension to add simple and customizable galleries to your Grav website.
 icon: picture-o
 author:
