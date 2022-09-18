@@ -4,7 +4,7 @@
 
 The **Shortcode Gallery** Plugin is an extension for [Grav CMS](http://github.com/getgrav/grav). A shortcode extension to add simple and customizable galleries to your grav website. It's targeting theme developers who seamlessly integrate CSS and JS assets for performance reasons.
 
-It's a fork of [Shortcode Gallery++](https://github.com/bitstarr/grav-plugin-shortcode-gallery) to fit my personal likings.
+It's a fork of [Shortcode Gallery++](https://github.com/sal0max/grav-plugin-shortcode-gallery-plusplus) to fit my personal likings.
 
 Unlike the original there no special handling for feeds here, because disabling caching on pages and posts seems not be best option for me, so the feed will have to take the gallery markup as is.
 
@@ -63,7 +63,7 @@ You can use the included CSS and JS if you enable them in the plugins settings. 
 
 For using another markup for you galleries, copy the templates from `user/plugins/shortcode-gallery/templates/shortcodes` to `user/themes/yourthemename/templates/shortcodes` (your theme) and customize according to need.
 
-With custom (theme site) CSS and JS you can implement it in the bundling/processing you like. This will ensure you have full control over web performance, since you are not dependent on how the plugin includes multiple files impacting the number and quality of requests to the server.
+With custom (theme side) CSS and JS you can implement it in the bundling/processing you like. This will ensure you have full control over web performance, since you are not dependent on how the plugin includes multiple files impacting the number and quality of requests to the server.
 
 You can use the included CSS and JavaScript files as reference or starting point for your modifications. You don't need to use [Chocolat Lightbox](https://github.com/nicolas-t/Chocolat). You can use what ever lightbox you like and customize the templates as the library demands.
 
@@ -120,4 +120,4 @@ list:
 ## Credits
 
 * [Chocolat Lightbox](https://github.com/nicolas-t/Chocolat)
-* This plugin is based on [Shortcode Gallery++](https://github.com/bitstarr/grav-plugin-shortcode-gallery)
+* This plugin is based on [Shortcode Gallery++](https://github.com/sal0max/grav-plugin-shortcode-gallery-plusplus)
