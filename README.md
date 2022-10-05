@@ -10,7 +10,7 @@ Unlike the original there no special handling for feeds here, because disabling 
 
 ## Usage
 
-It's quite simple. Just wrap some image links in `[gallery]` tags:
+It's pretty straight forward. Just wrap some image links in `[gallery]` tags:
 
 ```markdown
 [gallery]
@@ -61,9 +61,9 @@ With the included CSS and JS you can get a basic experience with different layou
 
 You can use the included CSS and JS if you enable them in the plugins settings. But here is how you use it in you theme.
 
-For using another markup for you galleries, copy the templates from `user/plugins/shortcode-gallery/templates/shortcodes` to `user/themes/yourthemename/templates/shortcodes` (your theme) and customize according to need.
+For using a different markup for you galleries, copy the templates from `user/plugins/shortcode-gallery/templates/shortcodes` to `user/themes/yourthemename/templates/shortcodes` (your theme) and customize according to need.
 
-With custom (theme side) CSS and JS you can implement it in the bundling/processing you like. This will ensure you have full control over web performance, since you are not dependent on how the plugin includes multiple files impacting the number and quality of requests to the server.
+With custom (theme side) CSS and JS you can implement it in the bundling/processing you like. This will ensure you have full control over web performance, since you're not dependent on how the plugin includes multiple files, impacting the number and quality of requests to the server.
 
 You can use the included CSS and JavaScript files as reference or starting point for your modifications. You don't need to use [Chocolat Lightbox](https://github.com/nicolas-t/Chocolat). You can use what ever lightbox you like and customize the templates as the library demands.
 
