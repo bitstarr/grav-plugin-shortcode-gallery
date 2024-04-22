@@ -27,6 +27,7 @@ class GalleryShortcode extends Shortcode
                 'thumb_height' => $sc->getParameter( 'thumb_height', $pluginConfig[$type]['thumb_height'] ),
                 'target_width' => $sc->getParameter( 'target_width', $pluginConfig['target_width'] ),
                 'target_height' => $sc->getParameter( 'target_height', $pluginConfig['target_height'] ),
+                'columns' => $sc->getParameter( 'columns' ),
                 'class' => $sc->getParameter( 'class' ),
             ];
 

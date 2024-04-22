@@ -1,3 +1,4 @@
+{% spaceless %}
 {# a random id for each gallery #}
 {% set id = random() %}
 {#- set classnames #}
@@ -8,7 +9,12 @@
 {%- if settings.class %}
     {%- set css_classes = css_classes|merge( [ settings.class ] ) %}
 {%- endif %}
-<div class="{{ css_classes|join( ' ' )|trim }}" id="gallery-{{ id }}" itemscope itemtype="http://schema.org/ImageGallery">
+{%- if settings.columns %}
+    {%- set column_style = ' style="--grid-column-count:' ~ settings.columns ~ '"' %}
+{%- endif %}
+
+{% endspaceless %}
+<div class="{{ css_classes|join( ' ' )|trim }}" id="gallery-{{ id }}" itemscope itemtype="http://schema.org/ImageGallery"{{ column_style|raw }}>
 {%~ for image in images %}
     {#~ try to generate a thumbnail image #}
     {#- 1) get the full image url

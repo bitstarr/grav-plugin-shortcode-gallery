@@ -55,6 +55,7 @@ With the included CSS and JS you can get a basic experience with different layou
 | `thumb_height` | dimension in pixel | height of the thumbnails
 | `link` | `true`, `false` | link thumbnails to larger/original image
 | `captions`  | `true`, `false` | show a caption (title) at the thumbnails
+| `columns`  | number (2 or 3) | Number of columns in grid type
 | `classes` | custom CSS class names | add your custom class names for special occurances
 
 ## Customization, CSS and JavaScript
